@@ -64,7 +64,7 @@ Responsabilidade Central: Setup inicial da infraestrutura, Entidade `Profissiona
 
 ✅ 1. Scaffolding: Criar a estrutura base de diretórios e arquivos vazios do projeto.
 
-[ ] 2. Configuração Base: Preencher `pom.xml`, `package.json`, `application.properties`, `Dockerfiles` e `docker-compose.yml`. (Libera o Passo 1 do DEV 2)
+✅ 2. Configuração Base: Preencher `pom.xml`, `package.json`, `application.properties`, `Dockerfiles` e `docker-compose.yml`. (Libera o Passo 1 do DEV 2)
 
 [ ] 3. Backend Profissional: Implementar Entidade, Repository e Controller de `Profissional` (com valores mockados para "Psicólogo", "Fisioterapeuta" e "Médico").
 
