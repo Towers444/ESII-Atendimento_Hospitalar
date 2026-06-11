@@ -36,6 +36,12 @@ jobs:
       - name: 🧪 Testes Unitários e de Integração
         run: mvn test -B
         working-directory: ./backend
+        env:
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_NAME: atendimento_test
+          DB_USER: postgres
+          DB_PASSWORD: postgres
 
   # ========================================
   # JOB 2: BUILD DO FRONTEND (React)
