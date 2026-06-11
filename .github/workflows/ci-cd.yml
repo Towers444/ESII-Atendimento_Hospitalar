@@ -73,8 +73,8 @@ jobs:
       
       - name: 🐳 Build Docker e Teste E2E (Aceitação)
         run: |
-          docker-compose build
-          docker-compose up -d
+          docker compose build
+          docker compose up -d
           echo "Aguardando 20 segundos para inicialização dos serviços..."
           sleep 20
           
@@ -84,7 +84,7 @@ jobs:
           # Testa se o Frontend (Nginx) responde 200 OK
           curl -f http://localhost:3000 || exit 1
           
-          docker-compose down
+          docker compose down
 
       # ==============================================================
       # ☁️ INSTRUÇÕES PARA DEPLOY NA AWS (AGUARDANDO CRÉDITOS)
