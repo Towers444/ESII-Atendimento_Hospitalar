@@ -58,36 +58,22 @@ npm test
 
 O desenvolvimento seguirá uma esteira sequencial para evitar bloqueios entre a dupla. Marque com um ✅ as tarefas concluídas.
 
-### 🧑‍💻 Desenvolvedor 1
+### 🧑‍💻 Desenvolvedor 1 - Lucas Carneiro Nassau Malta
 
 **Responsabilidade Central:** Setup inicial da infraestrutura, Entidade `Profissional de saúde` (Full-stack) e Pipeline CI/CD.
 
-- ✅ **1. Scaffolding:** Criar a estrutura base de diretórios e arquivos vazios do projeto.
-- ✅ **2. Configuração Base:** Preencher `pom.xml`, `package.json`, `application.properties`, `Dockerfiles` e `docker-compose.yml`. *(Libera o Passo 1 do DEV 2)*
-- ✅ **3. Backend Profissional:** Implementar Entidade, Repository e Controller de `Profissional` (com valores mockados para "Psicólogo", "Fisioterapeuta" e "Médico").
-- ✅ **4. Testes Profissional:** Implementar testes unitários e de integração para a API de profissionais.
-- ✅ **5. Frontend Profissional:** Desenvolver telas React (`ProfissionalList` e `ProfissionalForm`).
-- ✅ **6. CI/CD:** Atualizar o pipeline do GitHub Actions para a nova estrutura, mantendo o deploy na AWS comentado temporariamente.
+- [x] **1. Scaffolding:** Criar a estrutura base de diretórios e arquivos vazios do projeto.
+- [x] **2. Configuração Base:** Preencher `pom.xml`, `package.json`, `application.properties`, `Dockerfiles` e `docker-compose.yml`. *(Libera o Passo 1 do DEV 2)*
+- [x] **3. Backend Profissional:** Implementar Entidade, Repository e Controller de `Profissional` (com valores mockados para "Psicólogo", "Fisioterapeuta" e "Médico").
+- [x] **4. Testes Profissional:** Implementar testes unitários e de integração para a API de profissionais.
+- [x] **5. Frontend Profissional:** Desenvolver telas React (`ProfissionalList` e `ProfissionalForm`).
+- [x] **6. CI/CD:** Atualizar o pipeline do GitHub Actions para a nova estrutura, mantendo o deploy na AWS comentado temporariamente.
 
 ---
 
-### 🧑‍💻 Desenvolvedor 2
+### 🧑‍💻 Desenvolvedor 2 - João Pedro Torres
 
-**Responsabilidade Central:** Entidades `Atendimento` e `Exame laboratorial` (Full-stack) e lógicas deimport axios from 'axios';
-
-const api = axios.create({
-  baseURL: 'http://localhost:8080/api'
-});
-
-export const profissionalService = {
-  listar: () => api.get('/profissionais'),
-  buscar: (id) => api.get(`/profissionais/${id}`),
-  criar: (dados) => api.post('/profissionais', dados),
-  atualizar: (id, dados) => api.put(`/profissionais/${id}`, dados),
-  deletar: (id) => api.delete(`/profissionais/${id}`)
-};
-
-export default api; validação de negócio.
+**Responsabilidade Central:** Entidades `Atendimento` e `Exame laboratorial` (Full-stack) e lógicas de validação de negócio.
 
 - [ ] **1. Clonagem:** *(Depende do Passo 2 do DEV 1)* Baixar o repositório com a infraestrutura configurada e testar os contêineres locais.
 - [ ] **2. Backend Atendimento:** Criar Entidade e Repository de `Atendimento`.
