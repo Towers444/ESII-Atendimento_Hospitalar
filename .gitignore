@@ -1,2 +1,50 @@
-frontend/node_modules
-backend/target
+# --- Sistemas Operacionais ---
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Eclipse
+.settings/
+.project
+.classpath
+.factorypath
+
+# --- Backend (Java / Spring Boot / Maven) ---
+backend/target/
+backend/*.jar
+backend/*.war
+backend/*.zip
+backend/*.tar.gz
+backend/*.rar
+backend/.flattened-pom.xml
+backend/dependency-reduced-pom.xml
+backend/hs_err_pid*
+backend/replay_pid*
+
+# --- Frontend (React / Node.js) ---
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/.pnp
+frontend/.pnp.js
+
+# Variáveis de ambiente locais (nunca devem ir para o GitHub)
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# --- Docker ---
+# Evitar commit de logs gerados localmente
+*.log

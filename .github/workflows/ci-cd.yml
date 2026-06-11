@@ -1,0 +1,103 @@
+name: CI/CD Pipeline - Atendimento Hospitalar
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # ========================================
+  # JOB 1: TESTES DO BACKEND (Java/Spring Boot)
+  # ========================================
+  test-backend:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: atendimento_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports: [ "5432:5432" ]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: ☕ Configurar Java 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: 🧪 Testes Unitários e de Integração
+        run: mvn test -B
+        working-directory: ./backend
+
+  # ========================================
+  # JOB 2: BUILD DO FRONTEND (React)
+  # ========================================
+  test-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 🟢 Configurar Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: './frontend/package.json'
+      - name: 🏗️ Instalar Dependências e Build
+        run: |
+          npm install
+          npm run build
+        working-directory: ./frontend
+
+  # ========================================
+  # JOB 3: TESTE E2E E DEPLOY (CD)
+  # ========================================
+  deploy-e2e:
+    needs: [test-backend, test-frontend]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: 🐳 Build Docker e Teste E2E (Aceitação)
+        run: |
+          docker-compose build
+          docker-compose up -d
+          echo "Aguardando 20 segundos para inicialização dos serviços..."
+          sleep 20
+          
+          # Testa se o Backend responde 200 OK
+          curl -f http://localhost:8080/api/profissionais || exit 1
+          
+          # Testa se o Frontend (Nginx) responde 200 OK
+          curl -f http://localhost:3000 || exit 1
+          
+          docker-compose down
+
+      # ==============================================================
+      # ☁️ INSTRUÇÕES PARA DEPLOY NA AWS (AGUARDANDO CRÉDITOS)
+      # ==============================================================
+      # Quando a faculdade liberar a AWS, descomente o bloco abaixo.
+      # Vá no GitHub: Settings > Secrets and variables > Actions
+      # E adicione: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY e AWS_REGION
+      #
+      # - name: 🔐 Login no Amazon ECR
+      #   uses: aws-actions/amazon-ecr-login@v2
+      # 
+      # - name: 📦 Push das Imagens para Amazon ECR
+      #   run: |
+      #     docker tag atendimento-backend:latest $ECR_REGISTRY/atendimento-backend:latest
+      #     docker tag atendimento-frontend:latest $ECR_REGISTRY/atendimento-frontend:latest
+      #     docker push $ECR_REGISTRY/atendimento-backend:latest
+      #     docker push $ECR_REGISTRY/atendimento-frontend:latest
+      # 
+      # - name: 🚀 Deploy no Amazon ECS
+      #   run: |
+      #     aws ecs update-service --cluster atendimento-cluster --service backend-service --force-new-deployment
+      #     aws ecs update-service --cluster atendimento-cluster --service frontend-service --force-new-deployment

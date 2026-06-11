@@ -60,38 +60,41 @@ O desenvolvimento seguirá uma esteira sequencial para evitar bloqueios entre a 
 
 ### 🧑‍💻 Desenvolvedor 1
 
-Responsabilidade Central: Setup inicial da infraestrutura, Entidade `Profissional de saúde`, Entidade `Exame laboratorial` (Backend) e Pipeline.
+**Responsabilidade Central:** Setup inicial da infraestrutura, Entidade `Profissional de saúde` (Full-stack) e Pipeline CI/CD.
 
-✅ 1. Scaffolding: Criar a estrutura base de diretórios e arquivos vazios do projeto.
+- ✅ **1. Scaffolding:** Criar a estrutura base de diretórios e arquivos vazios do projeto.
+- ✅ **2. Configuração Base:** Preencher `pom.xml`, `package.json`, `application.properties`, `Dockerfiles` e `docker-compose.yml`. *(Libera o Passo 1 do DEV 2)*
+- ✅ **3. Backend Profissional:** Implementar Entidade, Repository e Controller de `Profissional` (com valores mockados para "Psicólogo", "Fisioterapeuta" e "Médico").
+- ✅ **4. Testes Profissional:** Implementar testes unitários e de integração para a API de profissionais.
+- ✅ **5. Frontend Profissional:** Desenvolver telas React (`ProfissionalList` e `ProfissionalForm`).
+- ✅ **6. CI/CD:** Atualizar o pipeline do GitHub Actions para a nova estrutura, mantendo o deploy na AWS comentado temporariamente.
 
-✅ 2. Configuração Base: Preencher `pom.xml`, `package.json`, `application.properties`, `Dockerfiles` e `docker-compose.yml`. (Libera o Passo 1 do DEV 2)
-
-[ ] 3. Backend Profissional: Implementar Entidade, Repository e Controller de `Profissional` (com valores mockados para "Psicólogo", "Fisioterapeuta" e "Médico").
-
-[ ] 4. Testes Profissional: Implementar testes unitários e de integração para a API de profissionais.
-
-[ ] 5. Frontend Profissional: Desenvolver telas React (`ProfissionalList` e `ProfissionalForm`).
-
-[ ] 6. Backend Exames: (Depende do Passo 3 do DEV 2) Implementar Entidade, Repository e Controller de `Exames laboratoriais`.
-
-[ ] 7. Testes Exames: Implementar testes para a API de exames. (Libera o Passo 6 do DEV 2)
-
-[ ] 8. CI/CD: Atualizar o pipeline do GitHub Actions para a nova estrutura, mantendo o deploy na AWS comentado temporariamente.
+---
 
 ### 🧑‍💻 Desenvolvedor 2
 
-Responsabilidade Central: Entidade `Atendimento`, lógicas de validação de negócio e Frontend de Exames.
+**Responsabilidade Central:** Entidades `Atendimento` e `Exame laboratorial` (Full-stack) e lógicas deimport axios from 'axios';
 
-[ ] 1. Clonagem: (Depende do Passo 2 do DEV 1) Baixar o repositório com a infraestrutura configurada e testar os contêineres locais.
+const api = axios.create({
+  baseURL: 'http://localhost:8080/api'
+});
 
-[ ] 2. Entidade Atendimento: Criar Entidade e Repository de `Atendimento`.
+export const profissionalService = {
+  listar: () => api.get('/profissionais'),
+  buscar: (id) => api.get(`/profissionais/${id}`),
+  criar: (dados) => api.post('/profissionais', dados),
+  atualizar: (id, dados) => api.put(`/profissionais/${id}`, dados),
+  deletar: (id) => api.delete(`/profissionais/${id}`)
+};
 
-[ ] 3. Regras de Negócio (Controller): Implementar o `AtendimentoController` contendo a validação estrita entre `categoria` do profissional e `receita_saude` no banco de dados. (Libera o Passo 6 do DEV 1)
+export default api; validação de negócio.
 
-[ ] 4. Testes Atendimento: Implementar testes unitários e de integração focando nas regras de negócio de criação e atualização.
-
-[ ] 5. Frontend Atendimento: Desenvolver telas React (`AtendimentoList` e `AtendimentoForm`).
-
-[ ] 6. Frontend Exames: (Depende do Passo 7 do DEV 1) Criar os componentes React para Exames e acoplá-los como uma sub-lista dentro da interface de Atendimentos.
-
-[ ] 7. E2E (Opcional/CD): Ajustar os scripts `curl` de teste de aceitação final do pipeline caso seja necessário.
+- [ ] **1. Clonagem:** *(Depende do Passo 2 do DEV 1)* Baixar o repositório com a infraestrutura configurada e testar os contêineres locais.
+- [ ] **2. Backend Atendimento:** Criar Entidade e Repository de `Atendimento`.
+- [ ] **3. Regras de Negócio Atendimento (Controller):** Implementar o `AtendimentoController` contendo a validação estrita entre `categoria` do profissional e `receita_saude` no banco de dados.
+- [ ] **4. Testes Atendimento:** Implementar testes unitários e de integração focando nas regras de negócio de criação e atualização.
+- [ ] **5. Backend Exames:** *(Depende do Passo 2)* Implementar Entidade, Repository e Controller de `Exames laboratoriais`.
+- [ ] **6. Testes Exames:** Implementar testes para a API de exames.
+- [ ] **7. Frontend Atendimento:** Desenvolver telas React (`AtendimentoList` e `AtendimentoForm`).
+- [ ] **8. Frontend Exames:** *(Depende do Passo 5)* Criar os componentes React para Exames e acoplá-los como uma sub-lista dentro da interface de Atendimentos.
+- [ ] **9. E2E (Opcional/CD):** Ajustar os scripts `curl` de teste de aceitação final do pipeline caso seja necessário.
