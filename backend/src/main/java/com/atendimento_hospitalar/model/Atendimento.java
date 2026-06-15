@@ -47,8 +47,8 @@ public class Atendimento {
     @JoinColumn(name = "profissional_id", nullable = false)
     private Profissional profissional;
 
-    @OneToMany(mappedBy = "atendimento")
-    private List<Exame> exames;
+    // @OneToMany(mappedBy = "atendimento")
+    // private List<Exame> exames;
 
     // Construtor vazio exigido pelo JPA
     public Atendimento() {}
