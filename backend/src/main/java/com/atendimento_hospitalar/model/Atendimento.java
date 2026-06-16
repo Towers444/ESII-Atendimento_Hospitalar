@@ -42,7 +42,7 @@ public class Atendimento {
     @Column(nullable = false, length = 100)
     private String receitaSaude;
 
-    @NotNull(message = "O profissional é obrigatória")
+    @NotNull(message = "O profissional é obrigatório")
     @ManyToOne
     @JoinColumn(name = "profissional_id", nullable = false)
     private Profissional profissional;
