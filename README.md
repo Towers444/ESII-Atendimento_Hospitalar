@@ -78,7 +78,7 @@ O desenvolvimento seguirá uma esteira sequencial para evitar bloqueios entre a 
 - [X] **1. Clonagem:** *(Depende do Passo 2 do DEV 1)* Baixar o repositório com a infraestrutura configurada e testar os contêineres locais.
 - [X] **2. Backend Atendimento:** Criar Entidade e Repository de `Atendimento`.
 - [X] **3. Regras de Negócio Atendimento (Controller):** Implementar o `AtendimentoController` contendo a validação estrita entre `categoria` do profissional e `receita_saude` no banco de dados.
-- [ ] **4. Testes Atendimento:** Implementar testes unitários e de integração focando nas regras de negócio de criação e atualização.
+- [X] **4. Testes Atendimento:** Implementar testes unitários e de integração focando nas regras de negócio de criação e atualização.
 - [ ] **5. Backend Exames:** *(Depende do Passo 2)* Implementar Entidade, Repository e Controller de `Exames laboratoriais`.
 - [ ] **6. Testes Exames:** Implementar testes para a API de exames.
 - [ ] **7. Frontend Atendimento:** Desenvolver telas React (`AtendimentoList` e `AtendimentoForm`).
