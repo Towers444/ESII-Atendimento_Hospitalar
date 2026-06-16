@@ -1,6 +1,7 @@
 package com.atendimento_hospitalar;
 
 import com.atendimento_hospitalar.model.Profissional;
+import com.atendimento_hospitalar.repository.AtendimentoRepository;
 import com.atendimento_hospitalar.repository.ProfissionalRepository;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -26,9 +27,13 @@ public class IntegracaoTest {
     @Autowired
     private ProfissionalRepository repository;
 
+    @Autowired
+    private AtendimentoRepository atendimentoRepository;
+
     @BeforeEach
     public void setup() {
         // Limpa o banco de dados antes de cada teste para evitar falsos positivos
+        atendimentoRepository.deleteAll();
         repository.deleteAll();
     }
 
