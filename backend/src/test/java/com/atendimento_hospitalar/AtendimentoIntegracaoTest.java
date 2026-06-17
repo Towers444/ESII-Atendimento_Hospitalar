@@ -2,6 +2,7 @@ package com.atendimento_hospitalar;
 
 import com.atendimento_hospitalar.model.Profissional;
 import com.atendimento_hospitalar.repository.AtendimentoRepository;
+import com.atendimento_hospitalar.repository.ExameLabRepository;
 import com.atendimento_hospitalar.repository.ProfissionalRepository;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -31,12 +32,14 @@ public class AtendimentoIntegracaoTest {
     @Autowired
     private ProfissionalRepository profissionalRepository;
 
+    @Autowired
+    private ExameLabRepository exameLabReposity;
+
     @BeforeEach
     public void setup() {
-
+        exameLabReposity.deleteAll();
         atendimentoRepository.deleteAll();
         profissionalRepository.deleteAll();
-
     }
 
     @Test
@@ -66,10 +69,7 @@ public class AtendimentoIntegracaoTest {
             """.formatted(medico.getId());
 
         // Faz o POST real
-        mockMvc.perform(post("/api/atendimentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonRequest))
-                .andExpect(status().isCreated());
+        mockMvc.perform(post("/api/atendimentos").contentType(MediaType.APPLICATION_JSON).content(jsonRequest)).andExpect(status().isCreated());
 
         // Verifica se realmente salvou no banco
         assertEquals(1, atendimentoRepository.count());

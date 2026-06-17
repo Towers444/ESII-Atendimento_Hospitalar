@@ -80,7 +80,7 @@ O desenvolvimento seguirá uma esteira sequencial para evitar bloqueios entre a 
 - [X] **3. Regras de Negócio Atendimento (Controller):** Implementar o `AtendimentoController` contendo a validação estrita entre `categoria` do profissional e `receita_saude` no banco de dados.
 - [X] **4. Testes Atendimento:** Implementar testes unitários e de integração focando nas regras de negócio de criação e atualização.
 - [X] **5. Backend Exames:** *(Depende do Passo 2)* Implementar Entidade, Repository e Controller de `Exames laboratoriais`.
-- [ ] **6. Testes Exames:** Implementar testes para a API de exames.
+- [X] **6. Testes Exames:** Implementar testes para a API de exames.
 - [ ] **7. Frontend Atendimento:** Desenvolver telas React (`AtendimentoList` e `AtendimentoForm`).
 - [ ] **8. Frontend Exames:** *(Depende do Passo 5)* Criar os componentes React para Exames e acoplá-los como uma sub-lista dentro da interface de Atendimentos.
 - [ ] **9. E2E (Opcional/CD):** Ajustar os scripts `curl` de teste de aceitação final do pipeline caso seja necessário.git 
