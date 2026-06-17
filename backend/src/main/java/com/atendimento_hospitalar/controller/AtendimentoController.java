@@ -45,6 +45,7 @@ public class AtendimentoController {
 
     }
 
+    // CRIAR (POST)
     @PostMapping
     public ResponseEntity<?> criar(@Valid @RequestBody Atendimento atendimento) {
 
@@ -76,11 +77,13 @@ public class AtendimentoController {
 
     }
 
+    // LER TODOS (GET)
     @GetMapping
     public ResponseEntity<List<Atendimento>> listar() {
         return ResponseEntity.ok(atendimentoRepository.findAll());
     }
 
+    // LER POR ID (GET)
     @GetMapping("/{id}")
     public ResponseEntity<Atendimento> buscar(@PathVariable Long id) {
 
@@ -90,6 +93,7 @@ public class AtendimentoController {
 
     }
 
+    // ATUALIZAR (PUT)
     @PutMapping("/{id}")
     public ResponseEntity<?> atualizar (@PathVariable Long id, @Valid @RequestBody Atendimento dadosAtualizados) {
             
@@ -130,6 +134,7 @@ public class AtendimentoController {
         }).orElse(ResponseEntity.notFound().build());
     }
 
+    // DELETAR (DELETE)
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
 
